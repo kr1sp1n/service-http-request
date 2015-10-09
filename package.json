@@ -1,0 +1,25 @@
+{
+  "name": "service-http-request",
+  "version": "0.0.1",
+  "description": "http request as a service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kr1sp1n/service-http-request.git"
+  },
+  "keywords": [
+    "service"
+  ],
+  "author": "kr1sp1n",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kr1sp1n/service-http-request/issues"
+  },
+  "homepage": "https://github.com/kr1sp1n/service-http-request",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

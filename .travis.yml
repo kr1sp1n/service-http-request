@@ -17,9 +17,13 @@ before_install:
 before_script:
   - npm prune
   - 'curl -Lo travis_after_all.py https://git.io/vLSON'
+script:
+  - npm run test:single
+  - npm run check-coverage
 after_success:
   - python travis_after_all.py
   - export $(cat .to_export_back)
+  - npm run report-coverage
   - npm run semantic-release
 branches:
   except:

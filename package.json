@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/kr1sp1n/service-http-request",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "1.14.1",
+    "express": "4.13.3",
+    "request": "2.65.0",
+    "uuid": "2.0.1"
   }
 }

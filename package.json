@@ -1,12 +1,12 @@
 {
   "name": "service-http-request",
-  "version": "0.1.0",
   "description": "http request as a service",
   "main": "index.js",
   "scripts": {
     "test": "$(npm bin)/mocha test/unit.js -w",
     "test:single": "$(npm bin)/istanbul cover -x test/*.js _mocha -- -R spec test/unit.js",
-    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,9 @@
     "ghooks": "0.3.2",
     "istanbul": "0.3.22",
     "mocha": "2.3.3",
-    "sinon": "1.17.1"
+    "semantic-release-cli": "1.3.1",
+    "sinon": "1.17.1",
+    "semantic-release": "^4.3.5"
   },
   "config": {
     "ghooks": {

@@ -1,10 +1,12 @@
 {
   "name": "service-http-request",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "http request as a service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/mocha test/unit.js -w",
+    "test:single": "$(npm bin)/istanbul cover -x test/*.js _mocha -- -R spec test/unit.js",
+    "check-coverage": "istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100"
   },
   "repository": {
     "type": "git",
@@ -24,5 +26,17 @@
     "express": "4.13.3",
     "request": "2.65.0",
     "uuid": "2.0.1"
+  },
+  "devDependencies": {
+    "chai": "3.3.0",
+    "ghooks": "0.3.2",
+    "istanbul": "0.3.22",
+    "mocha": "2.3.3",
+    "sinon": "1.17.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run test:single && npm run check-coverage"
+    }
   }
 }

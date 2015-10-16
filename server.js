@@ -19,19 +19,20 @@ app.use(bodyParser.json());
 
 var getCallbackOptionsByStatusCode = function(statusCode, callbacks) {
   var defaults = { method: 'PUT', json: true };
-  return _.assign(defaults, callbacks[statusCode]);
-
+  var opts = _.assign(defaults, callbacks[statusCode]);
   // Check failure
-  // if(statusCode.match(/^5|^4/)) {
-  //   uri = (callbacks.hasOwnProperty('fail')) ? uri = callbacks['fail'] : null;
-  // }
+  if(statusCode.match(/^5|^4/)) {
+    if (callbacks.hasOwnProperty('fail')) {
+      opts = _.assign(opts, callbacks['fail']);
+    }
+  }
   //
   // if (err) {
   //   if(callbacks.hasOwnProperty('err')) {
   //     uri = callback['err'];
   //   }
   // }
-
+  return opts;
 };
 
 app.post('/', function (req, res) {
@@ -52,6 +53,8 @@ app.post('/', function (req, res) {
       var callback_opts = getCallbackOptionsByStatusCode(statusCode, callbacks);
       callback_opts.body = response;
       responses[id] = response;
+      console.log('callback!');
+      console.log(callback_opts);
       request(callback_opts);
     }
   });

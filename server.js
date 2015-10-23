@@ -2,6 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var uuid = require('uuid')
 var _ = require('lodash')
+var debug = require('debug')('service-http-request')
 
 var app = express()
 var port = process.env['PORT'] || 3000
@@ -33,7 +34,6 @@ var getCallbackOptionsByStatusCode = function (statusCode, callbacks) {
 }
 
 app.post('/', function (req, res) {
-  console.log('POST')
   var resource_type = 'http_request'
   var id = uuid.v1()
   var defaults = { method: 'GET', json: true }
@@ -43,6 +43,7 @@ app.post('/', function (req, res) {
     href: [ endpoint, resource_type, id ].join('/')
   }
   requests[id] = item
+  debug('New request %s %s', opts.method, opts.uri)
   res.send(item)
   request(opts, function (err, response, body) {
     if (err) console.log(err)
@@ -52,6 +53,7 @@ app.post('/', function (req, res) {
       var callback_opts = getCallbackOptionsByStatusCode(statusCode, callbacks)
       callback_opts.body = response
       responses[id] = response
+      debug('Handle callbacks')
       request(callback_opts)
     }
   })

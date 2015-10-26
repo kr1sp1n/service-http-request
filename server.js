@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var uuid = require('uuid')
 var _ = require('lodash')
-var debug = require('debug')('service-http-request')
+var debug = require('debug')('http')
 
 var app = express()
 var port = process.env['PORT'] || 3000

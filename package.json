@@ -3,7 +3,8 @@
   "description": "http request as a service",
   "main": "index.js",
   "scripts": {
-    "start": "$(npm bin)/node-dev server.js",
+    "start": "node server.js",
+    "dev": "$(npm bin)/node-dev server.js",
     "test": "$(npm bin)/mocha test/unit.js -w",
     "test:single": "$(npm bin)/istanbul cover -x test/*.js _mocha -- -R spec test/unit.js",
     "check-coverage": "$(npm bin)/istanbul check-coverage --statements 100 --branches 100 --functions 100 --lines 100",

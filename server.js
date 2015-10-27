@@ -1,8 +1,9 @@
+var debug = require('debug')('http')
 var express = require('express')
 var bodyParser = require('body-parser')
 var uuid = require('uuid')
 var _ = require('lodash')
-var debug = require('debug')('http')
+var Handlebars = require('handlebars')
 
 var app = express()
 var port = process.env['PORT'] || 3000
@@ -52,6 +53,18 @@ app.post('/', function (req, res) {
     if (callbacks) {
       var callback_opts = getCallbackOptionsByStatusCode(statusCode, callbacks)
       callback_opts.body = response
+      if (callback_opts.response) {
+        if (_.isObject(callback_opts.response)) {
+          callback_opts.response = JSON.stringify(callback_opts.response)
+        }
+        var template = Handlebars.compile(callback_opts.response)
+        var result = template(response)
+        try {
+          callback_opts.body = JSON.parse(result)
+        } catch (e) {
+          console.log(e)
+        }
+      }
       responses[id] = response
       debug('Handle callbacks')
       request(callback_opts)

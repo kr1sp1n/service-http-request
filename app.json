@@ -1,0 +1,7 @@
+{
+  "name": "service-http-request",
+  "description": "HTTP request as a service",
+  "repository": "https://github.com/kr1sp1n/service-http-request",
+  "keywords": ["http", "request", "service"],
+  "image": "heroku/nodejs"
+}

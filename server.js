@@ -47,7 +47,11 @@ app.post('/', function (req, res) {
   debug('New request %s %s', opts.method, opts.uri)
   res.send(item)
   request(opts, function (err, response, body) {
-    if (err) console.log(err)
+    debug('...done')
+    if (err) {
+      debug(err)
+      return
+    }
     var statusCode = String(response.statusCode)
     var callbacks = req.body.callbacks
     if (callbacks) {
@@ -67,7 +71,9 @@ app.post('/', function (req, res) {
       }
       responses[id] = response
       debug('Handle callbacks')
-      request(callback_opts)
+      request(callback_opts, function (err, response, body) {
+        if (err) debug(err)
+      })
     }
   })
 })

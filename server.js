@@ -6,7 +6,7 @@ var _ = require('lodash')
 var Handlebars = require('handlebars')
 
 var app = express()
-var port = process.env['PORT'] || 3000
+var port = process.env['PORT'] || 3030
 var config = {}
 var request = require(__dirname + '/index.js')(config)
 

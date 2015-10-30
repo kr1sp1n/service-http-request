@@ -2,12 +2,7 @@
 
 PROJECT  ?= kr1sp1n/service-http-request
 TAG      ?= latest
-
-PORT ?= 3030
-
-DOCKER_EMAIL ?= fake@example.com
-DOCKER_USER ?= fake_user
-DOCKER_PASS ?= fake_password
+PORT 		 ?= 3030
 
 ifdef REGISTRY
 	IMAGE=$(REGISTRY)/$(PROJECT):$(TAG)

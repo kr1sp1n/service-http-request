@@ -5,12 +5,11 @@ var uuid = require('uuid')
 var _ = require('lodash')
 var Handlebars = require('handlebars')
 
+var config = require(__dirname + '/config.js')
 var app = express()
-var port = process.env['PORT'] || 3030
-var config = {}
+var port = config.port || 3030
+var endpoint = config.port || 'http://localhost:' + port
 var request = require(__dirname + '/index.js')(config)
-
-var endpoint = 'http://localhost:' + port
 
 // db
 var requests = {}

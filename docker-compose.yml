@@ -1,0 +1,12 @@
+version: '2'
+services:
+  http-request:
+    build: .
+    ports:
+      - "3030:3030"
+  http-inspect:
+    image: kr1sp1n/service-http-inspect
+    ports:
+      - "3031:3031"
+    environment:
+      - "PORT=3031"

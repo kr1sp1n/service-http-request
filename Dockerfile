@@ -16,4 +16,4 @@ ADD . .
 #   rm -rf /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp
 
 EXPOSE 3030
-CMD ["node", "server.js"]
+CMD ["node", "index.js"]

@@ -1,46 +1,47 @@
-var chai = require('chai')
-  , expect = chai.expect
-  , should = chai.should()
-  , sinon = require('sinon');
+const chai = require('chai');
+const expect = chai.expect;
+const should = chai.should();
+const sinon = require('sinon');
 
-describe('HTTP-Request module', function() {
+describe('request module', function () {
 
-  var module = require(__dirname + '/../index.js');
+  var module = require(__dirname + '/../src/request.js');
 
-  beforeEach(function() {
+  beforeEach(function () {
   });
 
   it('should return a function', function () {
     module.should.be.a('function');
   });
 
-  describe('HTTP-Request function', function() {
+  describe('request function', function () {
 
     var m = null;
     var config = null;
 
-    beforeEach(function() {
+    beforeEach(function () {
       config = {
-        request: sinon.stub()
+        request: sinon.stub(),
       };
       var err = null;
       var res = {};
       var body = {};
       config.request.yields(err, res, body);
-      m = module(config);
+      request = module(config);
     });
 
-    it('should initialize without passing a config', function() {
-      m = module();
+    it('should initialize without passing a config', function () {
+      request = module();
+      request.should.be.a('function');
     });
 
-    it('should do a HTTP request', function(done) {
-      var opts = {
+    it('should do a HTTP request', function (done) {
+      var options = {
         uri: 'http://localhost:3000',
-        method: 'GET'
+        method: 'GET',
       };
-      m(opts, function(err, res, body) {
-        config.request.calledOnce.should.be.ok
+      request(options, function (err, res, body) {
+        config.request.calledOnce.should.be.ok;
         return done(err);
       });
     });

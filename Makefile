@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all test
 
 PROJECT  ?= kr1sp1n/service-http-request
 TAG      ?= latest
@@ -19,6 +19,9 @@ all:
 
 install: package.json
 	npm install
+
+test:
+	npm test
 
 build: Dockerfile install
 	docker build -t $(IMAGE) .
